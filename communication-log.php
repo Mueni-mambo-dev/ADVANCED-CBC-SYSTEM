@@ -102,9 +102,9 @@ $logs = $conn->query("SELECT rs.*, s.first_name, s.last_name, s.admission_number
     <?php endif; ?>
     
     <div class="footer">
-        <a href="send_results.php">📱 Send Results</a>
-        <a href="DASHBOARD.php">🏠 Dashboard</a>
-        <a href="update_parent_contacts.php">📞 Update Contacts</a>
+        <a href="send-results.php">📱 Send Results</a>
+        <a href="dashboard.php">🏠 Dashboard</a>
+        <a href="update-parent-contacts.php">📞 Update Contacts</a>
     </div>
 </div>
 </body>
