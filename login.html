@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login - Kitere CBC Exam System</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(120deg, #89f7fe, #66a6ff);
+    min-height: 100vh;
+}
+
+header {
+    background: #002147;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+header h2 {
+    margin: 0;
+    font-size: 28px;
+}
+
+header p {
+    margin-top: 5px;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.container {
+    width: 90%;
+    max-width: 450px;
+    margin: 40px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+label {
+    font-weight: bold;
+    color: #555;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    border: 2px solid #e0e0e0;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #1abc9c;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #1abc9c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #16a085;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.footer a {
+    color: #1abc9c;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.footer a:hover {
+    color: #16a085;
+    text-decoration: underline;
+}
+
+.message {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.message.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.message.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.remember {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.remember input {
+    width: auto;
+    margin-right: 10px;
+    margin-bottom: 0;
+}
+
+.remember label {
+    margin-bottom: 0;
+    font-weight: normal;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+    <h2>📚 Kitere CBC Exam System</h2>
+    <p>Login to Your Account</p>
+</header>
+
+<div class="container">
+    <h2>Welcome Back!</h2>
+    <div class="subtitle">Please login to continue</div>
+    
+    <?php
+    session_start();
+    if(isset($_SESSION['message'])):
+    ?>
+        <div class="message <?php echo $_SESSION['message_type']; ?>">
+            <?php 
+                echo $_SESSION['message'];
+                unset($_SESSION['message']);
+                unset($_SESSION['message_type']);
+            ?>
+        </div>
+    <?php endif; ?>
+    
+    <form action="login.php" method="POST">
+        <label>Username or Email</label>
+        <input type="text" name="username" placeholder="Enter your username or email" required>
+        
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Enter your password" required>
+        
+        <div class="remember">
+            <input type="checkbox" name="remember" id="remember">
+            <label for="remember">Remember me</label>
+        </div>
+        
+        <button type="submit">Login</button>
+    </form>
+    
+    <div class="footer">
+        Don't have an account? <a href="register.html">Register here</a><br><br>
+        <a href="forgot-password.html">Forgot Password?</a>
+    </div>
+</div>
+
+</body>
+</html>

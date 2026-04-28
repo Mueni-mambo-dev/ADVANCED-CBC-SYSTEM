@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Register - Kitere CBC Exam System</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(120deg, #89f7fe, #66a6ff);
+    min-height: 100vh;
+}
+
+header {
+    background: #002147;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+header h2 {
+    margin: 0;
+    font-size: 28px;
+}
+
+header p {
+    margin-top: 5px;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.container {
+    width: 90%;
+    max-width: 500px;
+    margin: 40px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+label {
+    font-weight: bold;
+    color: #555;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    border: 2px solid #e0e0e0;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #1abc9c;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #1abc9c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #16a085;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.footer a {
+    color: #1abc9c;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.footer a:hover {
+    color: #16a085;
+    text-decoration: underline;
+}
+
+.message {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.message.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.message.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.password-strength {
+    margin-top: -15px;
+    margin-bottom: 20px;
+    font-size: 12px;
+}
+
+.strength-weak { color: #dc3545; }
+.strength-medium { color: #ffc107; }
+.strength-strong { color: #28a745; }
+</style>
+
+<script>
+function checkPasswordStrength() {
+    var password = document.getElementById('password').value;
+    var strengthText = document.getElementById('passwordStrength');
+    
+    if (password.length == 0) {
+        strengthText.innerHTML = '';
+        return;
+    }
+    
+    var strength = 0;
+    if (password.length >= 8) strength++;
+    if (password.match(/[a-z]+/)) strength++;
+    if (password.match(/[A-Z]+/)) strength++;
+    if (password.match(/[0-9]+/)) strength++;
+    if (password.match(/[$@#&!]+/)) strength++;
+    
+    if (strength <= 2) {
+        strengthText.innerHTML = 'Weak password';
+        strengthText.className = 'strength-weak';
+    } else if (strength == 3 || strength == 4) {
+        strengthText.innerHTML = 'Medium password';
+        strengthText.className = 'strength-medium';
+    } else {
+        strengthText.innerHTML = 'Strong password';
+        strengthText.className = 'strength-strong';
+    }
+}
+
+function validateForm() {
+    var password = document.getElementById('password').value;
+    var confirm = document.getElementById('confirm_password').value;
+    
+    if (password != confirm) {
+        alert('Passwords do not match!');
+        return false;
+    }
+    
+    if (password.length < 6) {
+        alert('Password must be at least 6 characters long!');
+        return false;
+    }
+    
+    return true;
+}
+</script>
+
+</head>
+
+<body>
+
+<header>
+    <h2>📚 Kitere CBC Exam System</h2>
+    <p>User Registration Portal</p>
+</header>
+
+<div class="container">
+    <h2>Create New Account</h2>
+    <div class="subtitle">Register to access the marks entry system</div>
+    
+    <?php
+    session_start();
+    if(isset($_SESSION['message'])):
+    ?>
+        <div class="message <?php echo $_SESSION['message_type']; ?>">
+            <?php 
+                echo $_SESSION['message'];
+                unset($_SESSION['message']);
+                unset($_SESSION['message_type']);
+            ?>
+        </div>
+    <?php endif; ?>
+    
+    <form action="register.php" method="POST" onsubmit="return validateForm()">
+        <label>Full Name</label>
+        <input type="text" name="full_name" placeholder="Enter your full name" required>
+        
+        <label>Username</label>
+        <input type="text" name="username" placeholder="Choose a username" required>
+        
+        <label>Email Address</label>
+        <input type="email" name="email" placeholder="Enter your email address" required>
+        
+        <label>Role</label>
+        <select name="role" required>
+            <option value="teacher">Teacher</option>
+            <option value="student">Student</option>
+            <option value="admin">Admin</option>
+        </select>
+        
+        <label>Password</label>
+        <input type="password" id="password" name="password" placeholder="Create a password" onkeyup="checkPasswordStrength()" required>
+        <div id="passwordStrength" class="password-strength"></div>
+        
+        <label>Confirm Password</label>
+        <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required>
+        
+        <button type="submit">Register Account</button>
+    </form>
+    
+    <div class="footer">
+        Already have an account? <a href="login.html">Login here</a>
+    </div>
+</div>
+
+</body>
+</html>
