@@ -336,7 +336,7 @@ if ($ranking_type == 'overall') {
         <div class="alert">
             ⚠️ No marks found for the selected criteria. Please enter marks first or try different filters.
             <br><br>
-            <a href="ENTER_MARKS.php" style="color: #856404; font-weight: bold;">➕ Click here to enter marks</a>
+            <a href="enter-marks.php" style="color: #856404; font-weight: bold;">➕ Click here to enter marks</a>
         </div>
     <?php endif; ?>
     
@@ -532,7 +532,7 @@ if ($ranking_type == 'overall') {
                 <li>The selected filters don't match any records</li>
             </ul>
             <br><br>
-            <a href="ENTER_MARKS.php" class="btn">➕ Enter Marks</a>
+            <a href="enter-marks.php" class="btn">➕ Enter Marks</a>
             <a href="?ranking_type=overall" class="btn">🔄 Reset Filters</a>
         </div>
     <?php else: ?>
@@ -543,9 +543,9 @@ if ($ranking_type == 'overall') {
     <?php endif; ?>
     
     <div class="footer">
-        <a href="DASHBOARD.php">🏠 Dashboard</a>
-        <a href="VIEW_MARKS.php">📊 View Marks</a>
-        <a href="merit_list.php">🏆 Merit List</a>
+        <a href="dashboard.php">🏠 Dashboard</a>
+        <a href="view-marks.php">📊 View Marks</a>
+        <a href="merit-list.php">🏆 Merit List</a>
         <a href="analytics.php">📈 Analytics</a>
     </div>
 </div>
