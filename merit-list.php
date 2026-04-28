@@ -325,7 +325,7 @@ if (!$subject_filter && !$class && $term_id && $year_id && $has_marks) {
         <div class="alert">
             ⚠️ No marks found for Term: <?php echo $term_info['term_name']; ?> - Year: <?php echo $year_info['year']; ?>
             <br><br>
-            <a href="ENTER_MARKS.php" style="color: #856404; font-weight: bold;">➕ Click here to enter marks</a>
+            <a href="enter-marks.php" style="color: #856404; font-weight: bold;">➕ Click here to enter marks</a>
         </div>
     <?php endif; ?>
     
@@ -485,7 +485,7 @@ if (!$subject_filter && !$class && $term_id && $year_id && $has_marks) {
                 <li>The selected filters don't match any records</li>
             </ul>
             <br><br>
-            <a href="ENTER_MARKS.php" class="btn">➕ Enter Marks</a>
+            <a href="enter-marks.php" class="btn">➕ Enter Marks</a>
             <a href="?class=&term_id=&year_id=" class="btn">🔄 Reset Filters</a>
         </div>
     <?php else: ?>
@@ -496,8 +496,8 @@ if (!$subject_filter && !$class && $term_id && $year_id && $has_marks) {
     <?php endif; ?>
     
     <div class="footer">
-        <a href="DASHBOARD.php">🏠 Dashboard</a>
-        <a href="VIEW_MARKS.php">📊 View Marks</a>
+        <a href="dashboard.php">🏠 Dashboard</a>
+        <a href="view-marks.php">📊 View Marks</a>
         <a href="ranking.php">🏆 Rankings</a>
         <a href="analytics.php">📈 Analytics</a>
     </div>
